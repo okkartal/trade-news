@@ -1,13 +1,14 @@
+using System.Text.Json;
 using NewsJob.Repositories;
 using Shared.Entities;
-using System.Text.Json;
 
 namespace NewsJob;
+
 public class Worker : BackgroundService
 {
-    private readonly ILogger<Worker> _logger;
-    private readonly IHttpClientFactory _httpClientFactory;
     private readonly IConfiguration _configuration;
+    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly ILogger<Worker> _logger;
     private readonly INewsRepository _newsRepository;
 
     public Worker(ILogger<Worker> logger,
@@ -23,9 +24,9 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        string apiUrl = $"{_configuration["JobProperties:ApiUrl"]}&apiKey={_configuration["JobProperties:ApiKey"]}";
-        int delayInMiliSeconds = Convert.ToInt32(_configuration["JobProperties:DelayMiliSeconds"]);
-        using HttpClient httpClient = _httpClientFactory.CreateClient();
+        var apiUrl = $"{_configuration["JobProperties:ApiUrl"]}&apiKey={_configuration["JobProperties:ApiKey"]}";
+        var delayInMiliSeconds = Convert.ToInt32(_configuration["JobProperties:DelayMiliSeconds"]);
+        using var httpClient = _httpClientFactory.CreateClient();
 
         while (!stoppingToken.IsCancellationRequested)
         {
@@ -33,19 +34,15 @@ public class Worker : BackgroundService
 
             try
             {
-
-                HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
+                var response = await httpClient.GetAsync(apiUrl, stoppingToken);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    string newsData = await response.Content.ReadAsStringAsync();
+                    var newsData = await response.Content.ReadAsStringAsync(stoppingToken);
 
                     var polygonResponse = JsonSerializer.Deserialize<PolygonResponse>(newsData);
 
-                    if (polygonResponse?.Results?.Length > 0)
-                    {
-                        await SaveNews(polygonResponse.Results);
-                    }
+                    if (polygonResponse?.Results.Length > 0) await SaveNews(polygonResponse.Results);
                 }
                 else
                 {

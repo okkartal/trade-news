@@ -1,16 +1,18 @@
 ﻿namespace NewsApi.Middlewares;
+
 public class ApiKeyMiddleware
 {
+    private const string ApiKeyName = "ApiKey";
     private readonly RequestDelegate _next;
 
-    private const string APIKEYNAME = "ApiKey";
     public ApiKeyMiddleware(RequestDelegate next)
     {
         _next = next;
     }
+
     public async Task InvokeAsync(HttpContext context)
     {
-        if (!context.Request.Headers.TryGetValue(APIKEYNAME, out var extractedApiKey))
+        if (!context.Request.Headers.TryGetValue(ApiKeyName, out var extractedApiKey))
         {
             context.Response.StatusCode = 401;
             await context.Response.WriteAsync("Api Key was not provided. (Using ApiKeyMiddleware)");
@@ -19,9 +21,9 @@ public class ApiKeyMiddleware
 
         var configuration = context.RequestServices.GetRequiredService<IConfiguration>();
 
-        var apiKey = configuration[APIKEYNAME];
+        var apiKey = configuration[ApiKeyName];
 
-        if (!apiKey.Equals(extractedApiKey))
+        if (apiKey != null && !apiKey.Equals(extractedApiKey))
         {
             context.Response.StatusCode = 401;
             await context.Response.WriteAsync("Unauthorized client. (Using ApiKeyMiddleware)");
@@ -31,4 +33,3 @@ public class ApiKeyMiddleware
         await _next(context);
     }
 }
-

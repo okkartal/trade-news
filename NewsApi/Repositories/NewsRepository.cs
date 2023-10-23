@@ -2,10 +2,12 @@
 using Shared.Entities;
 
 namespace NewsApi.Repositories;
+
 public class NewsRepository : INewsRepository
 {
-    private readonly IMongoCollection<News> _newsCollection;
     private readonly FilterDefinitionBuilder<News> _filterBuilder = Builders<News>.Filter;
+    private readonly IMongoCollection<News> _newsCollection;
+
     public NewsRepository(IMongoDatabase database)
     {
         _newsCollection = database.GetCollection<News>(nameof(News));
@@ -36,4 +38,3 @@ public class NewsRepository : INewsRepository
         return await _newsCollection.Find(_filterBuilder.Empty).SortByDescending(x => x.PublishedUtc).ToListAsync();
     }
 }
-

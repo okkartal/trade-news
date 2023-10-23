@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<IMongoDatabase>(provider =>
 {
     var configuration = provider.GetService<IConfiguration>();
-    var mongoClient = new MongoClient(configuration["MongoDbSettings:Uri"]);
-    return mongoClient.GetDatabase(configuration["MongoDbSettings:Database"]);
+    var mongoClient = new MongoClient(configuration?["MongoDbSettings:Uri"]);
+    return mongoClient.GetDatabase(configuration?["MongoDbSettings:Database"]);
 });
 
 // Add services to the container.
@@ -30,11 +30,12 @@ app.MapGet("/AllNewsFromTodayToSpecifiedDay/{day:int}", async (INewsRepository n
     return Results.Ok(result);
 });
 
-app.MapGet("/AllNewsPerInstrumentWithLimit/{instrument}/{limit:int}", async (INewsRepository newsRepository, string instrument, int limit) =>
-{
-    var result = await newsRepository.GetAllNewsPerInstrumentWithLimit(instrument, limit);
-    return Results.Ok(result);
-});
+app.MapGet("/AllNewsPerInstrumentWithLimit/{instrument}/{limit:int}",
+    async (INewsRepository newsRepository, string instrument, int limit) =>
+    {
+        var result = await newsRepository.GetAllNewsPerInstrumentWithLimit(instrument, limit);
+        return Results.Ok(result);
+    });
 
 app.MapGet("/AllNewsContainsText/{text}", async (INewsRepository newsRepository, string text) =>
 {

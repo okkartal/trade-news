@@ -1,6 +1,7 @@
 ﻿using Shared.Entities;
 
 namespace NewsApi.Repositories;
+
 public interface INewsRepository
 {
     Task<IReadOnlyCollection<News>> GetAllNews();
@@ -13,4 +14,3 @@ public interface INewsRepository
 
     Task<IReadOnlyCollection<News>> GetLatestNews();
 }
-
