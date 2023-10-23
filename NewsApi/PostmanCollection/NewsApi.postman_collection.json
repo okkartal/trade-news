@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "02736ed6-c263-4d4f-9a50-255b84bb79ee",
+		"name": "NewsApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AllNews",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "ApiKey",
+						"value": "THIS IS YOUR API KEY",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5063/AllNews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5063",
+					"path": [
+						"AllNews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllNewsFromFromTodayToSpecifiedDay",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "ApiKey",
+						"value": "THIS IS YOUR API KEY",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5063/AllNewsFromTodayToSpecifiedDay/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5063",
+					"path": [
+						"AllNewsFromTodayToSpecifiedDay",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllNewsPerInstrumentWithLimit",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "ApiKey",
+						"value": "THIS IS YOUR API KEY",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5063/AllNewsPerInstrumentWithLimit/MSFT/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5063",
+					"path": [
+						"AllNewsPerInstrumentWithLimit",
+						"MSFT",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllNewsContainsText",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "ApiKey",
+						"value": "THIS IS YOUR API KEY",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5063/AllNewsContainsText/stock market",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5063",
+					"path": [
+						"AllNewsContainsText",
+						"stock market"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LatestNews",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "ApiKey",
+						"value": "THIS IS YOUR API KEY",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5063/LatestNews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5063",
+					"path": [
+						"LatestNews"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
