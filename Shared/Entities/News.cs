@@ -1,10 +1,11 @@
 ﻿using System.Text.Json.Serialization;
+using MongoDB.Bson;
 
 namespace Shared.Entities;
 
 public class News
 {
-    [JsonPropertyName("id")] public string Id { get; set; }
+    [JsonIgnore] public ObjectId Id  => ObjectId.GenerateNewId();
 
     [JsonPropertyName("publisher")] public Publisher Publisher { get; set; }
 
