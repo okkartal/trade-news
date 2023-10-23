@@ -26,8 +26,8 @@ public class Worker : BackgroundService
     {
         var apiUrl = $"{_configuration["JobProperties:ApiUrl"]}&apiKey={_configuration["JobProperties:ApiKey"]}";
         var delayInMiliSeconds = Convert.ToInt32(_configuration["JobProperties:DelayMiliSeconds"]);
-        using var httpClient = _httpClientFactory.CreateClient();
 
+        using var httpClient = _httpClientFactory.CreateClient();
         while (!stoppingToken.IsCancellationRequested)
         {
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
