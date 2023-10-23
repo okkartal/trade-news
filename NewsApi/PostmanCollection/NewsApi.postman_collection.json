@@ -17,12 +17,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:5063/AllNews",
-					"protocol": "http",
+					"raw": "https://localhost:7087/AllNews",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "5063",
+					"port": "7087",
 					"path": [
 						"AllNews"
 					]
@@ -42,12 +42,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:5063/AllNewsFromTodayToSpecifiedDay/2",
-					"protocol": "http",
+					"raw": "https://localhost:7087/AllNewsFromTodayToSpecifiedDay/2",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "5063",
+					"port": "7087",
 					"path": [
 						"AllNewsFromTodayToSpecifiedDay",
 						"2"
@@ -68,15 +68,15 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:5063/AllNewsPerInstrumentWithLimit/MSFT/5",
-					"protocol": "http",
+					"raw": "https://localhost:7087/AllNewsPerInstrumentWithLimit/BLK/5",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "5063",
+					"port": "7087",
 					"path": [
 						"AllNewsPerInstrumentWithLimit",
-						"MSFT",
+						"BLK",
 						"5"
 					]
 				}
@@ -95,15 +95,15 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:5063/AllNewsContainsText/stock market",
-					"protocol": "http",
+					"raw": "https://localhost:7087/AllNewsContainsText/Polygon",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "5063",
+					"port": "7087",
 					"path": [
 						"AllNewsContainsText",
-						"stock market"
+						"Polygon"
 					]
 				}
 			},
@@ -121,12 +121,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:5063/LatestNews",
-					"protocol": "http",
+					"raw": "https://localhost:7087/LatestNews",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "5063",
+					"port": "7087",
 					"path": [
 						"LatestNews"
 					],
