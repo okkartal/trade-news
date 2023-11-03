@@ -16,28 +16,32 @@ builder.Services.AddSingleton<INewsRepository, NewsRepository>();
 
 var app = builder.Build();
 
-app.UseMiddleware<ApiKeyMiddleware>();
+app.UseWhen(context => context.Request.Path.StartsWithSegments("/api"), appBuilder =>
+{
+    appBuilder.UseMiddleware<ApiKeyMiddleware>();
+});
 
-app.MapGet("/AllNews", async (INewsRepository newsRepository) =>
+
+app.MapGet("/api/AllNews", async (INewsRepository newsRepository) =>
 {
     var result = await newsRepository.GetAllNews();
     return Results.Ok(result);
 });
 
-app.MapGet("/AllNewsFromTodayToSpecifiedDay/{day:int}", async (INewsRepository newsRepository, int day) =>
+app.MapGet("/api/AllNewsFromTodayToSpecifiedDay/{day:int}", async (INewsRepository newsRepository, int day) =>
 {
     var result = await newsRepository.GetAllNewsFromFromTodayToSpecifiedDay(day);
     return Results.Ok(result);
 });
 
-app.MapGet("/AllNewsPerInstrumentWithLimit/{instrument}/{limit:int}",
+app.MapGet("/api/AllNewsPerInstrumentWithLimit/{instrument}/{limit:int}",
     async (INewsRepository newsRepository, string instrument, int limit) =>
     {
         var result = await newsRepository.GetAllNewsPerInstrumentWithLimit(instrument, limit);
         return Results.Ok(result);
     });
 
-app.MapGet("/AllNewsContainsText/{text}", async (INewsRepository newsRepository, string text) =>
+app.MapGet("/api/AllNewsContainsText/{text}", async (INewsRepository newsRepository, string text) =>
 {
     var result = await newsRepository.GetAllNewsWithSpecifiedTexT(text);
     return Results.Ok(result);

@@ -17,13 +17,14 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:7087/AllNews",
+					"raw": "https://localhost:7087/api/AllNews",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "7087",
 					"path": [
+						"api",
 						"AllNews"
 					]
 				}
@@ -42,13 +43,14 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:7087/AllNewsFromTodayToSpecifiedDay/2",
+					"raw": "https://localhost:7087/api/AllNewsFromTodayToSpecifiedDay/2",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "7087",
 					"path": [
+						"api",
 						"AllNewsFromTodayToSpecifiedDay",
 						"2"
 					]
@@ -68,13 +70,14 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:7087/AllNewsPerInstrumentWithLimit/BLK/5",
+					"raw": "https://localhost:7087/api/AllNewsPerInstrumentWithLimit/BLK/5",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "7087",
 					"path": [
+						"api",
 						"AllNewsPerInstrumentWithLimit",
 						"BLK",
 						"5"
@@ -95,13 +98,14 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:7087/AllNewsContainsText/Polygon",
+					"raw": "https://localhost:7087/api/AllNewsContainsText/Polygon",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "7087",
 					"path": [
+						"api",
 						"AllNewsContainsText",
 						"Polygon"
 					]
@@ -115,8 +119,8 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "ApiKey",
-						"value": "THIS IS YOUR API KEY",
+						"key": "",
+						"value": "",
 						"type": "default"
 					}
 				],
