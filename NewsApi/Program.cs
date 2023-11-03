@@ -12,7 +12,7 @@ builder.Services.AddSingleton<IMongoDatabase>(provider =>
 });
 
 // Add services to the container.
-builder.Services.AddSingleton<INewsRepository, NewsRepository>();
+builder.Services.AddScoped<INewsRepository, NewsRepository>();
 
 var app = builder.Build();
 
